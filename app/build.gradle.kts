@@ -1,3 +1,4 @@
+// 依赖仓库查询网站 https://mvnrepository.com/
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -5,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.zyr.nice"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.zyr.nice"
@@ -40,6 +41,7 @@ android {
         compose = true
     }
     composeOptions {
+//        https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=zh-cn
         kotlinCompilerExtensionVersion = "1.5.1"
     }
     packaging {
@@ -53,12 +55,21 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+
+
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

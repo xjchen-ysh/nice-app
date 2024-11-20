@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">nice-app</string>
+    <string name="app_name">NiceApp</string>
+
+    <string name="splash_text">广告位招商 %1$d %2$s</string>
+
+
+
+    <string name="submit">提交</string>
 </resources>
