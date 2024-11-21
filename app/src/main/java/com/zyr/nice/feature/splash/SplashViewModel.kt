@@ -1,7 +1,6 @@
 package com.zyr.nice.feature.splash
 
 import android.os.CountDownTimer
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,7 +16,7 @@ class SplashViewModel : ViewModel() {
     val navigateToMain = MutableStateFlow(false)
 
     init {
-        delayToNext()
+        delayToNext(1)
     }
 
     private fun delayToNext(time: Long = 3000) {

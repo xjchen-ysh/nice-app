@@ -3,6 +3,12 @@
 
     <string name="splash_text">广告位招商 %1$d %2$s</string>
 
+    <string name="tab_main">首页</string>
+    <string name="tab_video">视频</string>
+    <string name="tab_me">我的</string>
+    <string name="tab_feed">动态</string>
+
+    <string name="discovery_search">输入关键字搜索</string>
 
 
     <string name="submit">提交</string>

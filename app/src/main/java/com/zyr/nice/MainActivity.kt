@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.zyr.nice.core.design.theme.AppTheme
-import com.zyr.nice.feature.splash.SplashRoute
 import com.zyr.nice.ui.MyApp
 
 class MainActivity : ComponentActivity() {
@@ -24,35 +23,37 @@ class MainActivity : ComponentActivity() {
 
         // 更改状态栏文字颜色
         enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.dark(0xFF006B5E.toInt())
+//            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT)
         )
 
 
 
         setContent {
             val navController = rememberNavController()
-
             AppTheme {
                 MyApp(
                     navController = navController
                 )
-//                SplashRoute()
-//                Scaffold(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .background(MaterialTheme.colorScheme.primary)
-//                ) { innerPadding ->
-//                    Greeting(
-//                        name = stringResource(id = R.string.submit),
-//                        modifier = Modifier
-//                            .padding(innerPadding)
-//                            .background(MaterialTheme.colorScheme.primary)
-//                    )
-//
-//                }
+                /*Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.primary)
+                ) { innerPadding ->
+                    Greeting(
+                        name = stringResource(id = R.string.submit),
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .background(MaterialTheme.colorScheme.primary)
+                    )
+
+                }*/
             }
         }
+    }
+
+    companion object {
+        val TAG = "MainActivity"
     }
 }
 
