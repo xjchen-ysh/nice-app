@@ -31,29 +31,42 @@ import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.zyr.nice.R
 import com.zyr.nice.core.design.theme.AppTheme
 import com.zyr.nice.core.design.theme.SpaceExtraMedium
 import com.zyr.nice.core.design.theme.SpaceOuter
-import com.zyr.nice.core.ui.DiscoveryDataPreviewParameterProvider.songs
+import com.zyr.nice.core.model.Song
+import com.zyr.nice.core.ui.DiscoveryPreviewParameterProvider
 import com.zyr.nice.feature.song.component.ItemSong
 
 @Composable
 fun DiscoveryRoute(
+    viewModel: DiscoveryViewModel = viewModel(),
+    toSheetDetail: (Long) -> Unit
 ) {
-    DiscoveryScreen()
+    val datum by viewModel.datum.collectAsState()
+    DiscoveryScreen(
+        songs = datum,
+        toSheetDetail = toSheetDetail
+    )
 }
 
 @Composable
 fun DiscoveryScreen(
     toggleDrawer: () -> Unit = {},
+    toSheetDetail: (Long) -> Unit = {},
     toSearch: () -> Unit = {},
+    songs: List<Song> = listOf()
 ) {
     Scaffold(
         topBar = {
@@ -75,7 +88,10 @@ fun DiscoveryScreen(
                 verticalArrangement = Arrangement.spacedBy(SpaceExtraMedium)
             ) {
                 items(songs) {
-                    ItemSong(data = it)
+                    ItemSong(data = it, modifier = Modifier
+                        .clickable {
+                            toSheetDetail(it.id)
+                        })
                 }
             }
         }
@@ -144,8 +160,11 @@ fun DiscoveryTopBar(toggleDrawer: () -> Unit, toSearch: () -> Unit) {
 
 @Composable
 @Preview(showBackground = true, apiLevel = 34)
-fun DiscoveryScreenPreview() {
+fun DiscoveryScreenPreview(
+    @PreviewParameter(DiscoveryPreviewParameterProvider::class)
+    songs: List<Song>
+) {
     AppTheme {
-        DiscoveryScreen()
+        DiscoveryScreen(songs = songs)
     }
 }

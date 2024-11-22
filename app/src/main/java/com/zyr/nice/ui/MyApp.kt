@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.zyr.nice.feature.main.mainScreen
 import com.zyr.nice.feature.main.navigateToMain
+import com.zyr.nice.feature.sheetdetail.navigateToSheetDetail
+import com.zyr.nice.feature.sheetdetail.sheetDetailScreen
 import com.zyr.nice.feature.splash.SPLASH_ROUTE
 import com.zyr.nice.feature.splash.splashScreen
 
@@ -16,7 +18,11 @@ fun MyApp(navController: NavHostController) {
             toMain = navController::navigateToMain
         )
         mainScreen(
-            finishPage = navController::popBackStack
+            finishPage = navController::popBackStack,
+            toSheetDetail = navController::navigateToSheetDetail
+        )
+        sheetDetailScreen(
+            toMain = navController::navigateToMain
         )
     }
 }

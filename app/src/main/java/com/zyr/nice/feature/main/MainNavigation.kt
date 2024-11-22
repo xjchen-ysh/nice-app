@@ -23,9 +23,10 @@ fun NavController.navigateToMain(): Unit {
  * 配置导航
  */
 fun NavGraphBuilder.mainScreen(
-    finishPage: () -> Unit
+    finishPage: () -> Unit,
+    toSheetDetail: (Long) -> Unit,
 ) {
     composable(MAIN_ROUTE) {
-        MainRoute(finishPage)
+        MainRoute(finishPage, toSheetDetail)
     }
 }

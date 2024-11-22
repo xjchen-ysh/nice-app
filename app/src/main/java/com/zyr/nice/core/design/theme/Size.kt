@@ -1,6 +1,8 @@
 package com.zyr.nice.core.design.theme
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -20,4 +22,14 @@ val SpaceExtraSmall = 0.9.dp
 @Composable
 fun SpaceSmallHeight(): Unit {
     Spacer(Modifier.height(SpaceSmall))
+}
+
+@Composable
+fun SpaceExtraSmallHeight(): Unit {
+    Spacer(
+        Modifier
+            .height(SpaceExtraSmall)
+            .fillMaxWidth()
+            .background(LocalDividerColor.current)
+    )
 }

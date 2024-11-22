@@ -1,10 +1,16 @@
 package com.zyr.nice.core.ui
 
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.zyr.nice.core.model.Song
+import com.zyr.nice.core.ui.DiscoveryDataPreviewParameterProvider.songs
+
+class DiscoveryPreviewParameterProvider : PreviewParameterProvider<List<Song>> {
+    override val values: Sequence<List<Song>> = sequenceOf(songs)
+}
 
 object DiscoveryDataPreviewParameterProvider {
     val SONG = Song(
-        "2",
+        2,
         "晴天",
         "resources/music.mp3",
         "resources/music.jpg",
@@ -40,7 +46,7 @@ object DiscoveryDataPreviewParameterProvider {
         SONG,
         SONG,
         Song(
-            "1",
+            2,
             "座右铭",
             "resources/music.mp3",
             "resources/music.jpg",
@@ -184,7 +190,7 @@ object DiscoveryDataPreviewParameterProvider {
             duration = 100
         ),
         Song(
-            "2",
+            2,
             "晴天",
             "resources/music.mp3",
             "resources/music.jpg",
@@ -198,7 +204,7 @@ object DiscoveryDataPreviewParameterProvider {
             duration = 100
         ),
         Song(
-            "3",
+            2,
             "黑色毛衣",
             "resources/music.mp3",
             "resources/music.jpg",

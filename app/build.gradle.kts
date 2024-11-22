@@ -2,6 +2,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.compose.compiler)
+
+    kotlin("plugin.serialization") version "2.0.21"
 }
 
 android {
@@ -66,7 +69,26 @@ dependencies {
 
     // navigation
     implementation(libs.androidx.navigation.compose)
+    // serialization
+    implementation(libs.kotlinx.serialization.json)
 
+    // 网络框架 okhttp
+    implementation(libs.okhttp)
+    // 网络框架日志
+    implementation(libs.logging.interceptor)
+    // retrofit
+    implementation(libs.retrofit)
+    // retrofit 支持 Kotlinx Serialization
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+
+    // coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
+    // ExoPlayer
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.ui)
 
 
 
