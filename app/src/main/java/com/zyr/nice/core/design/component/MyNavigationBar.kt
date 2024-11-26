@@ -1,5 +1,10 @@
 package com.zyr.nice.core.design.component
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,8 +24,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -48,6 +55,19 @@ fun MyNavigationBar(
     curSong: Song = SONG_EMPTY()
 ): Unit {
 
+    val infiniteTransition = rememberInfiniteTransition(label = "infinite")
+    val angle by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 360f,
+        animationSpec = infiniteRepeatable(
+            tween(
+                durationMillis = 8000,
+                easing = LinearEasing
+            )
+        ),
+        label = "color"
+    )
+
     Column {
         Row(
             Modifier
@@ -62,6 +82,9 @@ fun MyNavigationBar(
                 MyAsyncImgCircle(
                     Config.RESOURCE_ENDPOINT.format(curSong.icon), Modifier
                         .size(20.dp)
+                        .graphicsLayer(
+                            rotationZ = angle
+                        )
                 )
                 Text(
                     "${curSong.title} - ${curSong.artist}",
