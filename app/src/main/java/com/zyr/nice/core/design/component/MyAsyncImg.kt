@@ -35,3 +35,28 @@ fun MyAsyncImg(
         )
     }
 }
+
+@Composable
+fun MyAsyncImgCircle(
+    model: String?,
+    modifier: Modifier = Modifier
+): Unit {
+    val modifier1 = modifier
+        .clip(MaterialTheme.shapes.extraLarge)
+
+    if (model.isNullOrBlank()) {
+        Image(
+            painter = painterResource(id = R.drawable.splash_bg),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = modifier1
+        )
+    } else {
+        AsyncImage(
+            model = ResourceUtil.r(model),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = modifier1
+        )
+    }
+}

@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MailOutline
@@ -52,12 +52,15 @@ import com.zyr.nice.feature.song.component.ItemSong
 @Composable
 fun DiscoveryRoute(
     viewModel: DiscoveryViewModel = viewModel(),
-    toSheetDetail: (Long) -> Unit
+    toSheetDetail: (Long) -> Unit,
+    addMediaItem: (Song) -> Unit,
 ) {
     val datum by viewModel.datum.collectAsState()
     DiscoveryScreen(
         songs = datum,
-        toSheetDetail = toSheetDetail
+        toSheetDetail = toSheetDetail,
+        addMediaItem = addMediaItem,
+        loadMore = viewModel::loadMore
     )
 }
 
@@ -65,7 +68,9 @@ fun DiscoveryRoute(
 fun DiscoveryScreen(
     toggleDrawer: () -> Unit = {},
     toSheetDetail: (Long) -> Unit = {},
+    addMediaItem: (Song) -> Unit = {},
     toSearch: () -> Unit = {},
+    loadMore: () -> Unit = {},
     songs: List<Song> = listOf()
 ) {
     Scaffold(
@@ -87,12 +92,17 @@ fun DiscoveryScreen(
                 modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(SpaceOuter),
                 verticalArrangement = Arrangement.spacedBy(SpaceExtraMedium)
             ) {
-                items(songs) {
+                itemsIndexed(songs) { index, it ->
                     ItemSong(data = it, modifier = Modifier
                         .clickable {
-                            toSheetDetail(it.id)
+                            addMediaItem(it)
+//                            toSheetDetail(it.id)
                         })
+                    if (index == songs.lastIndex) {
+                        loadMore()
+                    }
                 }
+
             }
         }
     }
